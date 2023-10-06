@@ -4,8 +4,8 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
-from api.views import (CategoryViewSet, ForecastViewSet, SaleViewSet,
-                       ShopViewSet)
+from api.views import (ProductViewSet, ForecastViewSet, SaleViewSet,
+                       ShopViewSet,)
 
 app_name = 'api'
 
@@ -24,7 +24,7 @@ schema_view = get_schema_view(
 
 
 v1_router = DefaultRouter()
-v1_router.register('categories', CategoryViewSet, basename='categories')
+v1_router.register('categories', ProductViewSet, basename='categories')
 v1_router.register('sales', SaleViewSet, basename='tasalesgs')
 v1_router.register('shops', ShopViewSet, basename='shops')
 v1_router.register('forecast', ForecastViewSet, basename='forecast')

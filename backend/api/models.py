@@ -1,15 +1,40 @@
 from django.db import models
 
 
-class Category(models.Model):
-    sku = models.CharField(max_length=50)
-    group = models.CharField(max_length=100)
-    category = models.CharField(max_length=100)
-    subcategory = models.CharField(max_length=100)
-    uom = models.IntegerField()
+class Group(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Группа')
 
     def __str__(self):
-        return self.sku
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Категория')
+    group = models.ForeignKey(
+        Group, on_delete=models.CASCADE, related_name='categories')
+
+    def __str__(self):
+        return self.name
+
+
+class Subcategory(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Подкатегория')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='subcategories')
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    sku = models.CharField(max_length=255, verbose_name='SKU')
+    name = models.CharField(max_length=255, verbose_name='Товар')
+    subcategory = models.ForeignKey(
+        Subcategory, on_delete=models.CASCADE, related_name='products')
+    uom = models.PositiveIntegerField(verbose_name='UOM')
+
+    def __str__(self):
+        return self.name
 
 
 class Sale(models.Model):

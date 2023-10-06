@@ -1,15 +1,16 @@
 from rest_framework import filters
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ViewSet
+from rest_framework.response import Response
 
-from api.models import Category, Forecast, Sale, Shop
-from api.serializers import (CategorySerializer, ForecastSerializer,
+from api.models import Product, Forecast, Sale, Shop
+from api.serializers import (ProductSerializer, ForecastSerializer,
                              SaleSerializer,
-                             ShopSerializer)
+                             ShopSerializer,)
 
 
-class CategoryViewSet(ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 
 class SaleViewSet(ModelViewSet):

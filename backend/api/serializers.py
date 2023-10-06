@@ -1,12 +1,16 @@
 from rest_framework import serializers
 
-from api.models import Category, Forecast, Sale, Shop
+from api.models import Product, Forecast, Sale, Shop
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
+    group = serializers.ReadOnlyField(source='subcategory.category.group.name')
+    category = serializers.ReadOnlyField(source='subcategory.category.name')
+    subcategory = serializers.ReadOnlyField(source='subcategory.name')
+
     class Meta:
-        model = Category
-        fields = '__all__'
+        model = Product
+        fields = ('sku', 'group', 'category', 'subcategory', 'uom')
 
 
 class SaleSerializer(serializers.ModelSerializer):
