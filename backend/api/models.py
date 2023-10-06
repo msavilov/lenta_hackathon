@@ -33,14 +33,21 @@ class Shop(models.Model):
     is_active = models.BooleanField()
 
 
-class SalesUnit(models.Model):
-    forecast = models.ForeignKey(
-        'Forecast', related_name='sales_units', on_delete=models.CASCADE)
-    date = models.DateField()
-    sku = models.CharField(max_length=50)
-    sales_units = models.IntegerField()
-
-
 class Forecast(models.Model):
-    store = models.CharField(max_length=50)
-    forecast_date = models.DateField()
+    store = models.CharField(
+        max_length=255,
+        verbose_name='Магазин'
+    )
+    forecast_date = models.DateField(
+        verbose_name='Дата прогноза'
+    )
+    forecast = models.JSONField(
+        verbose_name='Прогноз'
+    )
+
+    class Meta:
+        verbose_name = 'Прогноз'
+        verbose_name_plural = 'Прогнозы'
+
+    def __str__(self):
+        return f'{self.store} - {self.forecast_date}'
