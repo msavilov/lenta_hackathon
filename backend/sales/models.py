@@ -7,6 +7,10 @@ class Group(models.Model):
         verbose_name='Группа товара'
     )
 
+    class Meta:
+        verbose_name = 'Группа товара'
+        verbose_name_plural = 'Группы товаров'
+
     def __str__(self):
         return self.name
 
@@ -22,6 +26,10 @@ class Category(models.Model):
         related_name='categories'
     )
 
+    class Meta:
+        verbose_name = 'Категория товара'
+        verbose_name_plural = 'Категории товара'
+
     def __str__(self):
         return self.name
 
@@ -36,6 +44,10 @@ class Subcategory(models.Model):
         on_delete=models.CASCADE,
         related_name='subcategories'
     )
+
+    class Meta:
+        verbose_name = 'Подкатегория товара'
+        verbose_name_plural = 'Подкатегории товара'
 
     def __str__(self):
         return self.name
@@ -56,6 +68,10 @@ class Product(models.Model):
     )
     uom = models.PositiveIntegerField(
         verbose_name='Маркер, обозначающий продаётся товар на вес или в ШТ')
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
     def __str__(self):
         return self.name
@@ -109,14 +125,25 @@ class Forecast(models.Model):
 
 
 class Sale(models.Model):
-    store = models.ForeignKey(
-        Shop, on_delete=models.CASCADE,
-        related_name='sales',
-        verbose_name='Магазин'
-    )
+    store = models.CharField(max_length=100, verbose_name='Магазин')
     sku = models.CharField(
-        max_length=50,
-        verbose_name='Захэшированное id'
+        max_length=50, verbose_name='Захэшированное id товара')
+    facts = models.ManyToManyField(
+        'SaleFact',
+        related_name='sales',
+        verbose_name='Факты продаж'
+    )
+
+    class Meta:
+        verbose_name = 'Продажа'
+        verbose_name_plural = 'Продажи'
+
+
+class SaleFact(models.Model):
+    sale = models.ForeignKey(
+        Sale, on_delete=models.CASCADE,
+        related_name='facts',
+        verbose_name='Продажа'
     )
     date = models.DateField(verbose_name='Дата')
     sales_type = models.IntegerField(verbose_name='Флаг наличия промо')
@@ -130,8 +157,10 @@ class Sale(models.Model):
         verbose_name='Продажи с признаком промо в РУБ')
 
     class Meta:
-        verbose_name = 'Продажа'
-        verbose_name_plural = 'Продажи'
+        verbose_name = 'Факт продажи'
+        verbose_name_plural = 'Факты продаж'
+        ordering = ('-date', )
 
     def __str__(self):
-        return f'Sale {self.sku} at {self.store} on {self.date}'
+        return (f'Факт продажи для Продажи {self.sale.sku}'
+                f'в {self.sale.store} на {self.date}')
