@@ -1,0 +1,11 @@
+asgiref==3.7.2
+Django==4.2.5
+djangorestframework==3.14.0
+gunicorn==21.2.0
+packaging==23.1
+python-logstash==0.4.8
+pytz==2023.3.post1
+sqlparse==0.4.4
+django-filter==23.2
+isort 
+drf-yasg
