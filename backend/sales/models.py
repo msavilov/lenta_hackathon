@@ -94,7 +94,7 @@ class Shop(models.Model):
     type_format = models.IntegerField(verbose_name='Формат')
     loc = models.IntegerField(verbose_name='Местоположение')
     size = models.IntegerField(verbose_name='Размер')
-    is_active = models.BooleanField(verbose_name='Активен')
+    is_active = models.IntegerField(verbose_name='Активен')
 
     class Meta:
         verbose_name = 'Магазин'
@@ -126,7 +126,11 @@ class Forecast(models.Model):
 
 
 class Sale(models.Model):
-    store = models.CharField(max_length=100, verbose_name='Магазин')
+    store = models.ForeignKey(
+        Shop, on_delete=models.CASCADE,
+        related_name='sales',
+        verbose_name='Магазин'
+    )
     sku = models.CharField(
         max_length=50, verbose_name='Захэшированное id товара')
     facts = models.ManyToManyField(
