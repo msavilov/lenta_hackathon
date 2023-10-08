@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from sales.models import Product, Forecast, Sale, Shop
+from sales.models import Forecast, Product, Sale, SaleFact, Shop
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -13,13 +13,23 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('sku', 'group', 'category', 'subcategory', 'uom')
 
 
-class SaleSerializer(serializers.ModelSerializer):
+class SaleFactSerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = Sale
+        model = SaleFact
         fields = '__all__'
 
 
+class SaleSerializer(serializers.ModelSerializer):
+    facts = SaleFactSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Sale
+        fields = ('store', 'sku', 'facts')
+
+
 class ShopSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Shop
         fields = '__all__'

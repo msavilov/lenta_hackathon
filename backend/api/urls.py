@@ -4,8 +4,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.routers import DefaultRouter
 
-from api.views import (ProductViewSet, ForecastViewSet, SaleViewSet,
-                       ShopViewSet,)
+from api.views import ForecastViewSet, ProductViewSet, SaleViewSet, ShopViewSet
 
 app_name = 'api'
 

@@ -1,10 +1,12 @@
-from rest_framework import filters
+from django_filters import rest_framework as django_filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 
-from api.serializers import (ProductSerializer, ForecastSerializer,
-                             SaleSerializer,
-                             ShopSerializer,)
-from sales.models import Product, Forecast, Sale, Shop
+from api.filters import SaleFilter, ShopFilter
+from api.serializers import (ForecastSerializer, ProductSerializer,
+                             SaleSerializer, ShopSerializer)
+from sales.models import Forecast, Product, Sale, Shop
 
 
 class ProductViewSet(ModelViewSet):
@@ -15,35 +17,19 @@ class ProductViewSet(ModelViewSet):
 class SaleViewSet(ModelViewSet):
     queryset = Sale.objects.all()
     serializer_class = SaleSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['store', 'sku']
-
-    def get_queryset(self):
-        queryset = Sale.objects.all()
-        store = self.request.query_params.get('store')
-        sku = self.request.query_params.get('sku')
-        if store:
-            queryset = queryset.filter(store=store)
-        if sku:
-            queryset = queryset.filter(sku=sku)
-        return queryset
+    filter_backends = [
+        DjangoFilterBackend, SearchFilter]
+    filterset_class = SaleFilter
+    search_fields = ['store__name', 'sku']
 
 
 class ShopViewSet(ModelViewSet):
     queryset = Shop.objects.all()
     serializer_class = ShopSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['city', 'cat']
-
-    def get_queryset(self):
-        queryset = Shop.objects.all()
-        city = self.request.query_params.get('city')
-        cat = self.request.query_params.get('cat')
-        if city:
-            queryset = queryset.filter(city=city)
-        if cat:
-            queryset = queryset.filter(cat=cat)
-        return queryset
+    filter_backends = [
+        django_filters.DjangoFilterBackend, SearchFilter]
+    filterset_class = ShopFilter
+    search_fields = ['city', 'loc']
 
 
 class ForecastViewSet(ModelViewSet):
