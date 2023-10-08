@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from sales.models import Product, Forecast, Sale, Shop
+from sales.models import Forecast, Product, Sale, Shop
 
 
 class ProductSerializer(serializers.ModelSerializer):
