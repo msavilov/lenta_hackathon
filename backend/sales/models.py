@@ -131,7 +131,7 @@ class Sale(models.Model):
         max_length=50, verbose_name='Захэшированное id товара')
     facts = models.ManyToManyField(
         'SaleFact',
-        related_name='sales',
+        related_name='sales_related',
         verbose_name='Факты продаж'
     )
 
@@ -143,7 +143,7 @@ class Sale(models.Model):
 class SaleFact(models.Model):
     sale = models.ForeignKey(
         Sale, on_delete=models.CASCADE,
-        related_name='facts',
+        related_name='sales_facts',
         verbose_name='Продажа'
     )
     date = models.DateField(verbose_name='Дата')
