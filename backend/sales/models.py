@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -13,7 +14,7 @@ class Group(models.Model):
 
 class Category(models.Model):
     name = models.CharField(
-        max_length=255,
+        max_length=settings.LONG_NAME_LENGTH,
         verbose_name='Категория товара'
     )
     group = models.ForeignKey(
@@ -28,7 +29,7 @@ class Category(models.Model):
 
 class Subcategory(models.Model):
     name = models.CharField(
-        max_length=255,
+        max_length=settings.LONG_NAME_LENGTH,
         verbose_name='Подкатегория товара'
     )
     category = models.ForeignKey(
@@ -43,11 +44,11 @@ class Subcategory(models.Model):
 
 class Product(models.Model):
     sku = models.CharField(
-        max_length=255,
+        max_length=settings.LONG_NAME_LENGTH,
         verbose_name='Захэшированное id'
     )
     name = models.CharField(
-        max_length=255,
+        max_length=settings.LONG_NAME_LENGTH,
         verbose_name='Товар'
     )
     subcategory = models.ForeignKey(
@@ -63,15 +64,15 @@ class Product(models.Model):
 
 class Shop(models.Model):
     store = models.CharField(
-        max_length=50,
+        max_length=settings.SHORT_NAME_LENGTH,
         verbose_name='Магазин'
     )
     city = models.CharField(
-        max_length=50,
+        max_length=settings.SHORT_NAME_LENGTH,
         verbose_name='Город'
     )
     division = models.CharField(
-        max_length=50,
+        max_length=settings.SHORT_NAME_LENGTH,
         verbose_name='Подразделение'
     )
     type_format = models.IntegerField(verbose_name='Формат')

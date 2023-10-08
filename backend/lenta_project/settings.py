@@ -1,18 +1,31 @@
+import os
+
+from dotenv import find_dotenv, load_dotenv
 from pathlib import Path
+
+load_dotenv(find_dotenv())
+
+# Global constants
+EMAIL_MAX_LENGTH = 50
+EMAIL_MIN_LENGTH = 5
+PASSWORD_MIN_LENGTH = 8
+PASSWORD_MAX_LENGTH = 25
+LONG_NAME_LENGTH = 255
+SHORT_NAME_LENGTH = 50
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-s3rid$esk6w-1cl$z24l!qy%yqd%dio9xw$zh2!v*t1yfx1odu'
+SECRET_KEY = os.environ['SECRET_KEY']
 
+DEBUG = os.environ['DEBUG'] is True
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(' ')
 
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'sales.apps.SalesConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -86,8 +100,47 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 STATIC_URL = 'static/'
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+###########################
+#  DJANGO REST FRAMEWORK
+###########################
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':
+        ('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication'],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+
+AUTH_USER_MODEL = 'users.User'
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'HIDE_USERS': False,
+    'USER_CREATE_PASSWORD_RETYPE': False,
+    'PERMISSIONS': {
+        'user': ('rest_framework.permissions.IsAuthenticated',),
+    },
+}
