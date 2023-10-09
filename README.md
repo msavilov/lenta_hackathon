@@ -5,6 +5,7 @@ Cоздание предсказательной модели и его инте
 
 ## Команда
 [Максим Савилов - developer](https://github.com/msavilov)
+
 [Кирилл Хорошилов - developer](https://github.com/1emd)
 
 ### Технологии
