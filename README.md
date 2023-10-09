@@ -3,6 +3,10 @@
 ## Описание
 Cоздание предсказательной модели и его интерфейса по прогнозированию спроса на товары заказчика собственного производства ООО “Лента”.
 
+## Команда
+[Максим Савилов - developer](https://github.com/msavilov)
+[Кирилл Хорошилов - developer](https://github.com/1emd)
+
 ### Технологии
  - ![](https://img.shields.io/badge/Python_3.11-blue)
  - ![](https://img.shields.io/badge/Django_3.2-blue)
