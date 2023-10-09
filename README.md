@@ -1,13 +1,15 @@
-# lenta_hackathon
+# 'Хакатон Лента х Практикум сентябрь’23. Команда 20'
 
 ## Описание
 
 ### Технологии
- - _[Python 3.11.5](https://docs.python.org/3/)_
- - _[Django 4.2.4](https://docs.djangoproject.com/en/4.1/releases/3.2.16/)_
- - _[Django REST framework 3.12.4](https://www.django-rest-framework.org/)_
- - _[Djoser 2.2.0](https://djoser.readthedocs.io/en/latest/)_
- - _[SQLite3](https://www3.sqlite.org/index.html)_
+ - ![](https://img.shields.io/badge/Python-3.11-blue)
+ - ![](https://img.shields.io/badge/Django-3.2-blue)
+ - ![](https://img.shields.io/badge/Django_REST_Framework-3.14-blue)
+ - ![](https://img.shields.io/badge/Djoser-blue)
+ - ![](https://img.shields.io/badge/Postgresql-blue)
+ - ![](https://img.shields.io/badge/Docker-blue)
+ - ![](https://img.shields.io/badge/Docker-compose-blue)
 
 
 ### Установка
@@ -36,7 +38,7 @@
    ```
 
 4. Активировать виртуальное окружение для проекта (там же набираешь одну из этих команд
-   и нажимаешь "ENTER", в терминал слева появится (venv) - значит ты в виртуально окружении)):
+   и нажимаешь "ENTER", в терминал слева появится (venv)):
 
    ```python
    # для OS Lunix и MacOS
@@ -46,7 +48,7 @@
    source venv/Scripts/activate
    ```
 
-5. Установить зависимости (так же в той же директории):
+5. Установить зависимости:
 
       ```python
    # для OS Lunix и MacOS
@@ -56,8 +58,7 @@
    python -m pip install --upgrade pip && pip install -r requirements.txt
    ```
 
-6. Cоздайте файл `.env` в директории `/backend/` (вставить отправленный):
-
+6. Cоздайте файл `.env` в директории `/backend/`:
 
    ```python
    cd backend && nano .env
@@ -70,18 +71,21 @@
    ```
 
 7. Выполнить миграции на уровне проекта из директории `/backend/`
-   (если не вы перешли на нее предыдущей комнадно cd backend,
+   (если не вы перешли на нее предыдущей комнаде cd backend,
    то выполните команду cd backend):
 
    ```python
    # для OS Lunix и MacOS
-   python3 manage.py makemigrations && python3 manage.py migrate
+   python3 manage.py makemigrations users
+   python3 manage.py makemigrations sales
+   python3 manage.py migrate
 
    # для OS Windows
-   python manage.py makemigrations && python manage.py migrate
+   python manage.py makemigrations users
+   python manage.py makemigrations sales
+   python manage.py migrate
    ```
-8. Создание суперпользователя
-    ввести команду 'python manage.py createsuperuser', там придумаешь почту и пароль
+8. Создание суперпользователя: ввести команду 'python manage.py createsuperuser'
 
    ```python
    # для OS Lunix и MacOS
@@ -90,7 +94,7 @@
    # для OS Windows
    python manage.py createsuperuser
    ```
-9. Запускаешь проект локально:
+9. Запустить проект локально:
 
    ```python
    # для OS Lunix и MacOS
@@ -101,11 +105,7 @@
    ```
 
 ### Вход в админку
-Заходишь по адресу http://127.0.0.1:8000/admin со своим почтой и паролем
-
+- [Admin](http://127.0.0.1:8000/admin) со своим почтой и паролем
 
 ### Работа с документацией и Postman после запуска проекта
-
-1. Открываешь документацию по ссылке:
-
-   - [Swagger](http://127.0.0.1:8000/swagger/)_
+- [Swagger](http://127.0.0.1:8000/swagger/)
