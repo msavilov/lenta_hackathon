@@ -3,13 +3,13 @@
 ## Описание
 
 ### Технологии
- - ![](https://img.shields.io/badge/Python-3.11-blue)
- - ![](https://img.shields.io/badge/Django-3.2-blue)
- - ![](https://img.shields.io/badge/Django_REST_Framework-3.14-blue)
+ - ![](https://img.shields.io/badge/Python_3.11-blue)
+ - ![](https://img.shields.io/badge/Django_3.2-blue)
+ - ![](https://img.shields.io/badge/Django_REST_Framework_3.14-blue)
  - ![](https://img.shields.io/badge/Djoser-blue)
  - ![](https://img.shields.io/badge/Postgresql-blue)
  - ![](https://img.shields.io/badge/Docker-blue)
- - ![](https://img.shields.io/badge/Docker-compose-blue)
+ - ![](https://img.shields.io/badge/Docker_compose-blue)
 
 
 ### Установка
