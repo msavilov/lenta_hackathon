@@ -1,0 +1,42 @@
+version: '3.8'
+
+volumes:
+  db_lenta:
+  # data:
+  static:
+
+services:
+  db:
+    image: postgres:13.10
+    restart: always
+    volumes:
+      - db_lenta:/var/lib/postgresql/data/
+    env_file: 
+      - .env
+
+  backend:
+    build: backend/
+    restart: on-failure
+    volumes:
+      # - data:/app/data/
+      - static:/backend_static
+    depends_on:
+      - db
+    env_file: 
+      - .env
+
+  # frontend:
+  #   env_file: .env
+  #   build: frontend/
+
+  gateway:
+    build: gateway/
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - static:/staticfiles
+    depends_on:
+      - backend
+    env_file:
+      - .env
