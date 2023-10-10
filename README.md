@@ -16,8 +16,8 @@ Cоздание предсказательной модели и его инте
 - _[Django REST framework 3.12.4](https://www.django-rest-framework.org/)_
 - _[Djoser 2.2.0](https://djoser.readthedocs.io/en/latest/)_
 - _[Postgresql](https://hub.docker.com/_/postgres)_-Docker-образ
-- _[Docker and docker-compose](https://www.docker.com/get-started/)
-- _[drf-yasq](https://drf-yasg.readthedocs.io/en/stable/readme.html)
+- _[Docker and docker-compose](https://www.docker.com/get-started/)_
+- _[drf-yasq](https://drf-yasg.readthedocs.io/en/stable/readme.html)_
 
 
 ### Установка
