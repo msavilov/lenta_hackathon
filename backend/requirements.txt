@@ -12,4 +12,6 @@ drf-yasg
 djoser==2.2.0
 python-dotenv==1.0.0
 psycopg2-binary==2.9.9
-django-cors-headers==3.13.0
+fastapi
+uvicorn
+pydantic
