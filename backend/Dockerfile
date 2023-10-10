@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY requirements.txt .
 
+# Для запуска на хостинге
 # RUN apt-get update
 # RUN apt-get install gcc -y
 # RUN apt-get install --reinstall libpq-dev python3-dev -y

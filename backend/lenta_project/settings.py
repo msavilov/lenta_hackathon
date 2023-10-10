@@ -19,10 +19,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = True
 
-# For Docker
+# For run in Docker
 ALLOWED_HOSTS = ['*']
 
-# For Product
+# For run in production
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(' ')
 
 
