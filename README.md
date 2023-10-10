@@ -77,10 +77,10 @@ Cоздание предсказательной модели и его инте
    DEBUG=''
    ALLOWED_HOSTS='*' (или,ваши,хосты,через,запятые,без,пробелов)
    ```
-7. В зависимости от того, запускается проект в Docker или на продакте выбрать
-   настройки ALLOWED_HOSTS в settings.py
+7. В зависимости от того, запускаете вы проект в Docker или нет,
+   выбрать ALLOWED_HOSTS в settings.py
 
-### Запуск на продакте
+### Для запуска вне Docker.
 
 1. Выполнить миграции на уровне проекта из директории `/backend/`
    (если не вы перешли на нее предыдущей комнаде cd backend,
@@ -115,28 +115,25 @@ Cоздание предсказательной модели и его инте
    # для OS Windows
    python manage.py runserver
    ```
+### Для запуска в Docker
 
-### Запуск в Docker
-
-  1. Выполнить в терминале.
-
+1. Запустить контейнеры
+   
    ```python
    docker compose up --build
    ```
-
-   2. В новом окне терминала выполнить последовательно команды
-   для миграции файлов и сбора ститики.
-
+2. Сделать миграции и собрать статику
+   
    ```python
    docker compose exec backend python manage.py migrate
 
    docker compose exec backend python manage.py collectstatic
 
-   docker compose exec backend cp -r /app/collected_static/. /backend_static/static/ 
+   docker compose exec backend cp -r /app/collected_static/. /backend_static/static/
    ```
 
-### Вход на главную страницу (не работает)
-- [Index](http://127.0.0.1:8000)
+### Вход на главуную страницу (не работает)
+- [Index](http://127.0.0.1:8000/) со своим почтой и паролем
 
 ### Вход в админку
 - [Admin](http://127.0.0.1:8000/admin) со своим почтой и паролем
