@@ -1,8 +1,8 @@
-import requests
-import os
 import logging
-from datetime import date, timedelta
+import os
+import requests
 
+from datetime import date, timedelta
 from model import forecast
 
 URL_CATEGORIES = 'categories/'
@@ -20,7 +20,8 @@ def setup_logging():
     _logger = logging.getLogger(__name__)
     _logger.setLevel(logging.DEBUG)
     handler_m = logging.StreamHandler()
-    formatter_m = logging.Formatter("%(name)s %(asctime)s %(levelname)s %(message)s")
+    formatter_m = logging.Formatter(
+        "%(name)s%(asctime)s %(levelname)s %(message)s")
     handler_m.setFormatter(formatter_m)
     _logger.addHandler(handler_m)
 
@@ -75,9 +76,9 @@ def main(today=date.today()):
             result.append({"store": store["store"],
                            "forecast_date": today.strftime("%Y-%m-%d"),
                            "forecast": {"sku": item["sku"],
-                                        "sales_units": {k: v for k, v in zip(forecast_dates, prediction)}
-                                        }
-                          })
+                                        "sales_units": {k: v for k, v in zip(
+                                            forecast_dates, prediction)}
+                                        }})
         requests.post(get_address(URL_FORECAST), json={"data": result})
 
 
