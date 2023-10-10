@@ -77,8 +77,12 @@ Cоздание предсказательной модели и его инте
    DEBUG=''
    ALLOWED_HOSTS='*' (или,ваши,хосты,через,запятые,без,пробелов)
    ```
+7. В зависимости от того, запускается проект в Docker или на продакте выбрать
+   настройки ALLOWED_HOSTS в settings.py
 
-7. Выполнить миграции на уровне проекта из директории `/backend/`
+### Запуск на продакте
+
+1. Выполнить миграции на уровне проекта из директории `/backend/`
    (если не вы перешли на нее предыдущей комнаде cd backend,
    то выполните команду cd backend):
 
@@ -93,7 +97,7 @@ Cоздание предсказательной модели и его инте
    python manage.py makemigrations sales
    python manage.py migrate
    ```
-8. Создание суперпользователя: ввести команду 'python manage.py createsuperuser'
+2. Создание суперпользователя: ввести команду 'python manage.py createsuperuser'
 
    ```python
    # для OS Lunix и MacOS
@@ -102,7 +106,7 @@ Cоздание предсказательной модели и его инте
    # для OS Windows
    python manage.py createsuperuser
    ```
-9. Запустить проект локально:
+3. Запустить проект локально:
 
    ```python
    # для OS Lunix и MacOS
@@ -111,6 +115,28 @@ Cоздание предсказательной модели и его инте
    # для OS Windows
    python manage.py runserver
    ```
+
+### Запуск в Docker
+
+  1. Выполнить в терминале.
+
+   ```python
+   docker compose up --build
+   ```
+
+   2. В новом окне терминала выполнить последовательно команды
+   для миграции файлов и сбора ститики.
+
+   ```python
+   docker compose exec backend python manage.py migrate
+
+   docker compose exec backend python manage.py collectstatic
+
+   docker compose exec backend cp -r /app/collected_static/. /backend_static/static/ 
+   ```
+
+### Вход на главную страницу (не работает)
+- [Index](http://127.0.0.1:8000)
 
 ### Вход в админку
 - [Admin](http://127.0.0.1:8000/admin) со своим почтой и паролем
