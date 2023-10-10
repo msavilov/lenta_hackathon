@@ -3,19 +3,21 @@
 ## Описание
 Cоздание предсказательной модели и его интерфейса по прогнозированию спроса на товары заказчика собственного производства ООО “Лента”.
 
+
 ## Команда
 [Максим Савилов - developer](https://github.com/msavilov)
 
 [Кирилл Хорошилов - developer](https://github.com/1emd)
 
+
 ### Технологии
- - ![](https://img.shields.io/badge/Python_3.11-blue)
- - ![](https://img.shields.io/badge/Django_3.2-blue)
- - ![](https://img.shields.io/badge/Django_REST_Framework_3.14-blue)
- - ![](https://img.shields.io/badge/Djoser-blue)
- - ![](https://img.shields.io/badge/Postgresql-blue)
- - ![](https://img.shields.io/badge/Docker-blue)
- - ![](https://img.shields.io/badge/Docker_compose-blue)
+- _[Python 3.11.5](https://docs.python.org/3/)_
+- _[Django 4.2.4]((https://www.djangoproject.com/download/))_
+- _[Django REST framework 3.12.4](https://www.django-rest-framework.org/)_
+- _[Djoser 2.2.0](https://djoser.readthedocs.io/en/latest/)_
+- _[Postgresql](https://hub.docker.com/_/postgres)_Docker-образ
+- _[Docker and docker-compose](https://www.docker.com/get-started/)
+- _[drf-yasq](https://drf-yasg.readthedocs.io/en/stable/readme.html)
 
 
 ### Установка
