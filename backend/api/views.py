@@ -2,10 +2,11 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import ModelViewSet
 
-from api.filters import (SaleFilter, ShopFilter,
-                         ProductFilter, GlobalSearchFilter)
+from api.filters import (GlobalSearchFilter, ProductFilter, SaleFilter,
+                         ShopFilter,)
 from api.serializers import (ForecastSerializer, ProductSerializer,
                              SaleSerializer, ShopSerializer,)
+
 from sales.models import Forecast, Product, Sale, Shop
 
 

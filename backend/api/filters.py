@@ -1,7 +1,7 @@
-from django_filters.rest_framework import (FilterSet, CharFilter,
-                                           BooleanFilter, NumberFilter)
+from django_filters.rest_framework import (BooleanFilter, CharFilter,
+                                           FilterSet, NumberFilter,)
 
-from sales.models import Sale, Shop, Product
+from sales.models import Product, Sale, Shop
 
 
 class SaleFilter(FilterSet):
@@ -79,6 +79,6 @@ class GlobalSearchFilter(FilterSet):
         shop_queryset = shop_filter.qs
         product_queryset = product_filter.qs
 
-        combined_queryset = (sale_queryset | shop_queryset |
-                             product_queryset).distinct()
+        combined_queryset = (sale_queryset | shop_queryset
+                             | product_queryset).distinct()
         return combined_queryset
